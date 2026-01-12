@@ -7,9 +7,6 @@ import time
 
 
 class BaseObject:
-    """
-    Class to define base signature of all objects
-    """
 
     def update(self, events: list[pygame.event.Event], dt):
         pass
@@ -58,7 +55,6 @@ class Player(BaseObject):
 
     def draw(self, surf: pygame.Surface):
         surf.blit(self.image, self.rect)
-        # pygame.draw.rect(surf, 'red', self.rect, 5)
 
 
 class Pipe(BaseObject):

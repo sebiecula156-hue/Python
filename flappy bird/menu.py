@@ -10,7 +10,7 @@ from objects import *
 class Menu:
     def __init__(self, name, manager: 'MenuManager'):
         self.name = name
-        self.manager = manager  # manager from which this class has been referenced
+        self.manager = manager
 
     def update(self, events: list[pygame.event.Event], dt):
         pass
@@ -130,7 +130,6 @@ class Game(Menu):
             i.draw(surf)
         self.player.draw(surf)
 
-        # generate score image
         w, h = self.numbers[0].get_size()
         score = str(self.score)
         s = pygame.Surface((w * len(score), h), pygame.SRCALPHA)
@@ -138,8 +137,6 @@ class Game(Menu):
             s.blit(self.numbers[int(score[i])], (i * w, 0))
         if self.show_score:
             surf.blit(self.game_over_msg, self.game_over_msg.get_rect(center=(W // 2, 150 + 5 * math.sin(time.time() * 5))))
-            # pygame.draw.rect(surf, '#DED895', (W // 2 - 100, 250 - 40, 200, 150))
-            # pygame.draw.rect(surf, 'brown', (W // 2 - 100, 250 - 40, 200, 150), 3)
             t = self.font.render('click to play again', False, 'white')
             surf.blit(t, t.get_rect(center=(W // 2, H - 75 + 10 * math.sin(time.time() * 5))))
             surf.blit(self.score_img, self.score_img.get_rect(center=(W // 2, 250)))

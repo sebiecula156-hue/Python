@@ -1,8 +1,3 @@
-"""
-Entry point for all imports
-Here we will need to alias pygame from kengi.pygame
-"""
-
 import os
 import pygame
 
@@ -13,12 +8,8 @@ TARGET_FPS = 60
 
 ASSETS = 'assets'
 IMAGES = os.path.join(ASSETS, 'images')
-SOUNDS = os.path.join(ASSETS, 'sounds')
 
-SPEED = 2
-
-
-# below are some utility functions
+SPEED = 10
 
 def load_image(path, alpha=False, scale=1.0, color_key=None):
     img = pygame.image.load(path)
@@ -31,7 +22,6 @@ def load_image(path, alpha=False, scale=1.0, color_key=None):
     if color_key:
         img.set_colorkey(color_key)
     return img
-
 
 def clamp(value, mini, maxi):
     if value < mini:
