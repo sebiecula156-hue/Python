@@ -1,0 +1,76 @@
+class Employee:
+    """Common base class for all employees"""
+    empCount = 0
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+        self.tasks = {}
+        Employee.empCount += 1
+
+    def display_emp_count(self):
+        "Displays the number of employees"
+        print(f"Total number of employee(s) is {Employee.empCount}")
+
+    def display_employee(self):
+        print(f"Employee Name : {self.name}, Salary: {self.salary}, Type: Standard Employee")
+
+    def __del__ (self):
+        Employee.empCount -=1
+
+    def update_salary(self, new_salary):
+        self.salary = new_salary
+
+    def modify_task(self, task_name, status="New"):
+        self.tasks[task_name]=status
+
+    def display_task(self, status):
+        print(f"Taskuri cu statusul {status}")
+        for name in self.tasks.keys():
+            if self.tasks[name] == status:
+                print(name)
+
+class Manager(Employee):
+    mgr_count = 0 
+    
+    def __init__(self, name, salary, tasks, department):
+        self.name = name     
+        self.salary = salary 
+        self.tasks = {}      
+        Employee.empCount += 1
+        
+        self.tasks.update(tasks)
+        self.department = f"F11_{department}" 
+        Manager.mgr_count += 1
+        
+    def display_employee(self):
+        print(f"Manager Salariu: {self.salary}")
+
+manager1 = Manager(
+    name="Cristian Andrei", 
+    salary=5000, 
+    tasks={"Planificare Q4": "New"}, 
+    department="IT"
+)
+
+manager2 = Manager(
+    name="Dragan Marius", 
+    salary=4700, 
+    tasks={"Recrutare": "In Progress"}, 
+    department="HR"
+)
+
+employee1 = Employee("Sirghe George", 3500)
+employee2 = Employee("Sandica Alina", 3729)
+
+manager1.display_employee()
+manager2.display_employee()
+
+employee1.display_employee()
+employee2.display_employee()
+
+valoare_employee = employee1.empCount
+print(f"Employee: {valoare_employee}")
+
+valoare_manager = manager1.empCount
+print(f"Manager: {valoare_manager}")
